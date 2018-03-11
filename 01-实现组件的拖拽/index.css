@@ -1,0 +1,13 @@
+#dragged{
+	width: 200px;
+	height: 150px;
+	border: 1px solid black;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}
+.bar{
+	height:20px;
+	background-color: #8881CB;
+	cursor: move;
+}

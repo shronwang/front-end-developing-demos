@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>实现组件的拖拽</title>
+	<script type="text/javascript" src="drag.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div id="dragged">
+	<div class="bar"></div>
+	<div class="box"></div>
+</div>
+
+<script type="text/javascript">
+window.onload=function() {
+	
+	var eBar=document.getElementsByClassName("bar")[0];
+	var eDrag=document.getElementById("dragged");
+
+	drag(eBar,eDrag);
+}	
+
+</script>
+</body>
+</html>
