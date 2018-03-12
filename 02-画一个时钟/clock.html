@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS实现时钟效果</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.circle{
+			position: relative;
+            margin: 150px auto;
+            width: 400px;
+            height: 400px;        
+		}
+		#center{
+			position: absolute;
+			top: 185px;
+			left: 185px;
+			width: 30px;
+			height: 30px;
+			background-color: #DF361FFF; 
+			border-radius: 15px;
+			z-index: 1;
+		}
+		.scale{
+			position: absolute;
+			top:0px;
+			left:199px;
+			width: 2px;
+			height: 392px;
+			border-bottom: 4px solid black;
+			border-top: 4px solid black;
+		}
+		.long{
+			height: 380px;
+			border-bottom: 10px solid black;
+			border-top: 10px solid black;
+		}
+		#hour{
+			position: absolute;
+			top: 80px;
+			left: 193px;
+			width: 14px;
+			height: 120px;
+			background-color: black;
+			-webkit-transform-origin: 50% 100%;
+            -moz-transform-origin: 50% 100%;
+            -ms-transform-origin: 50% 100%;
+            -o-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;		
+		}
+		#minute{
+			position: absolute;
+			top: 40px;
+			left: 193px;
+			width: 14px;
+			height: 160px;
+			background-color: black;
+			-webkit-transform-origin: 50% 100%;
+            -moz-transform-origin: 50% 100%;
+            -ms-transform-origin: 50% 100%;
+            -o-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;			
+		}
+		#second{
+			position: absolute;
+			top: 0px;
+			left: 197px;
+			width: 6px;
+			height: 250px;
+			background-color: red;
+			-webkit-transform-origin: 50% 80%;
+            -moz-transform-origin: 50% 80%;
+            -ms-transform-origin: 50% 80%;
+            -o-transform-origin: 50% 80%;
+            transform-origin: 50% 80%;
+            z-index: 1;		
+		}
+	</style>
+</head>
+<body>
+	<div class="circle">
+		<div id="center"></div>
+		<div id="hour"></div>
+		<div id="minute"></div>
+		<div id="second"></div>
+		<div id="scales"></div>
+	</div>
+
+	<script type="text/javascript">
+		var hour=document.getElementById("hour");
+    	var min=document.getElementById("minute");
+    	var sec=document.getElementById("second");
+		var scales =document.getElementById("scales");
+
+		var scale="";
+		for(var i=0;i<30;i++){
+			scale+="<div class='scale'></div>";
+		}
+		scales.innerHTML=scale;
+
+		var eScales=document.getElementsByClassName("scale");
+		for(var i=0;i<30;i++){
+			if(i%5==0){
+				eScales[i].className="scale long";
+			}
+			eScales[i].style.transform="rotateZ("+i*6+"deg)";
+		}
+
+		function move(){
+
+			clearTimeout("move()");
+			var now = new Date();
+
+			var nowSec=now.getSeconds();
+			sec.style.transform="rotateZ("+(nowSec*6)+"deg)";
+        	sec.style.webkitTransform="rotateZ("+(nowSec*6)+"deg)";
+        	sec.style.oTransform="rotateZ("+(nowSec*6)+"deg)";
+        	sec.style.msTransform="rotateZ("+(nowSec*6)+"deg)";
+        	sec.style.mozTransform="rotateZ("+(nowSec*6)+"deg)";
+
+        	var nowMin=now.getMinutes()+nowSec/60;
+        	min.style.transform="rotateZ("+nowMin*6+"deg)";
+        	min.style.webkitTransform="rotateZ("+nowMin*6+"deg)";
+        	min.style.oTransform="rotateZ("+nowMin*6+"deg)";
+        	min.style.msTransform="rotateZ("+nowMin*6+"deg)";
+        	min.style.mozTransform="rotateZ("+nowMin*6+"deg)";
+
+        	var nowH=now.getHours()+nowMin/60;
+        	hour.style.transform="rotateZ("+nowH*30+"deg)";
+        	hour.style.webkitTransform="rotateZ("+nowH*30+"deg)";
+        	hour.style.oTransform="rotateZ("+nowH*30+"deg)";
+        	hour.style.msTransform="rotateZ("+nowH*30+"deg)";
+        	hour.style.mozTransform="rotateZ("+nowH*30+"deg)";
+
+        	//alert(now.getMinutes());
+        	setTimeout("move()",1000);
+		}
+
+		move();
+	</script>
+</body>
+</html>
