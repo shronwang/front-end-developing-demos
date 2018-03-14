@@ -1,0 +1,22 @@
+html,body,input{margin: 0;padding: 0;overflow: hidden;}
+
+#chessboard{
+	background-color: #BA9A59;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+}
+
+#btns{
+	position: absolute;
+	left:70px;
+	top: 750px;
+}
+
+#btns input{
+	width: 120px;
+	height: 40px;
+	background-color: #BA9A59;
+	margin: 20px;
+	border: none;
+}
