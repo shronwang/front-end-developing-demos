@@ -141,7 +141,18 @@ function isSuccess(i,j,side){
 		else break;
 	}
 	if(count==5)return true;
-	
+	//判断竖向
+	count=1;
+	for(var x=1;x<5,j+x<=16;x++){
+		if(arr[i][j+x]==side)count++;
+		else break;
+	}
+	for(x=1;x<5,j-x>=0;x++){
+		if(arr[i][j-x]==side)count++;
+		else break;
+	}
+	if(count==5)return true;
+
 	return false;
 }
 //获取样式
