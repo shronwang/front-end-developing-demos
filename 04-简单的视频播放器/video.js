@@ -7,7 +7,8 @@ var videoWrapper,
 	playOffBtn,
 	playOffBtnIcon,
 	fullScreen,
-	fullScreenBtn;
+	fullScreenBtn,
+	progressPlayed;
 
 var playOffHander=function(){
 	if(playOffBtnIcon){
@@ -136,16 +137,18 @@ var volumeInit=function(element,moveBar){
 	moveBar.style.height=(110-bottomNum)+"px";
 };
 
-/*var progressClickHandler=function(event,progress){
-	var e=event||window.event;
-		var x=e.clientX;//获取鼠标点击的横坐标
-		var allX=getCSS(videoWrapper,"left");//获取视频左侧的横坐标
-		var length=getCSS(progress,"width");
-		var percent=((x-parseInt(allX))/parseFloat(length))*100;
-		progressPlayed.style.width=percent+"%";
-		console.log(percent/100*video.duration);
-		video.currentTime=percent/100*video.duration;
-}*/
+var updateProgress=function(){
+	clearTimeout(m);
+	var currentTime=video.currentTime;
+	var length=video.duration;
+	progressPlayed.style.width=currentTime/length*100+"%";
+	if(!video.ended){
+		var m= setTimeout(arguments.callee,1000);
+	}else{
+		clearTimeout(m);
+	}
+}
+
 var init=function(){
 	videoWrapper=document.querySelector(".video-wrapper");
 	videoBox=document.querySelector(".video");
@@ -174,7 +177,7 @@ var init=function(){
 	dragBox(volumeControlBtn,volumeControlBar,volumeControlCurrentBar);
 	//处理进度条
 	var progress=document.querySelector(".video-control-progress");
-	var progressPlayed=document.querySelector(".video-played");
+	progressPlayed=document.querySelector(".video-played");
 	progress.onclick=function(event){
 		var e=event||window.event;
 		var x=e.clientX;//获取鼠标点击的横坐标
@@ -182,10 +185,9 @@ var init=function(){
 		var length=getCSS(progress,"width");
 		var percent=((x-parseInt(allX))/parseFloat(length))*100;
 		progressPlayed.style.width=percent+"%";
-		console.log(percent/100*video.duration);
 		video.currentTime=percent/100*video.duration;
 	}
-	
+	updateProgress();
 }	
 
 window.onload=init;
