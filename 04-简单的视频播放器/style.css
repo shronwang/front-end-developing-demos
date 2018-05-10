@@ -166,6 +166,10 @@ body{
 	height: 3px;
 	background-color: #303036;
 	cursor: pointer;
+	transition: all 1s;
+	-moz-transition: all 1s; /* Firefox 4 */
+	-webkit-transition: all 1s; /* Safari 和 Chrome */
+	-o-transition: all 1s; /* Opera */
 	position: relative;
 	left: 0;
 	top: -3px;
