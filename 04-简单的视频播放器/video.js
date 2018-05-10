@@ -195,13 +195,13 @@ var init=function(){
 		videoControl.style.display="block";
 		progress.style.top="-45px";
 		progress.style.height="3px";
-		console.log("in");
+		// console.log("in");
 	};
 	videoPlay.onmouseout=function(){
 		videoControl.style.display="none";
 		progress.style.top="39px";
 		progress.style.height="3px";
-		console.log("out");
+		// console.log("out");
 	};
 	progress.onmouseover=function(){
 		videoControl.style.display="block";
@@ -213,8 +213,8 @@ var init=function(){
 		progress.style.height="3px";
 	};
 }	
-
-window.onload=init;
-
+// window.onload=init;
+this.video=init;
 })();
-
+//直接调用
+window.onload=video;
