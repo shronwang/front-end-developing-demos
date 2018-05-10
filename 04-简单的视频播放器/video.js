@@ -187,7 +187,31 @@ var init=function(){
 		progressPlayed.style.width=percent+"%";
 		video.currentTime=percent/100*video.duration;
 	}
+
 	updateProgress();
+	//鼠标滑入/滑出视频，控制条出现/隐藏，进度条位置变化效果
+	var videoControl=document.querySelector(".video-control-box");
+	videoPlay.onmouseover=function(){
+		videoControl.style.display="block";
+		progress.style.top="-45px";
+		progress.style.height="3px";
+		console.log("in");
+	};
+	videoPlay.onmouseout=function(){
+		videoControl.style.display="none";
+		progress.style.top="39px";
+		progress.style.height="3px";
+		console.log("out");
+	};
+	progress.onmouseover=function(){
+		videoControl.style.display="block";
+		progress.style.top="-58px";
+		progress.style.height="16px";
+	};
+	progress.onmouseout=function(){
+		progress.style.top="-45px";
+		progress.style.height="3px";
+	};
 }	
 
 window.onload=init;
