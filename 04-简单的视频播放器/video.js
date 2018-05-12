@@ -189,19 +189,34 @@ var init=function(){
 	}
 
 	updateProgress();
+
 	//鼠标滑入/滑出视频，控制条出现/隐藏，进度条位置变化效果
-	var videoControl=document.querySelector(".video-control-box");
-	videoPlay.onmouseover=function(){
+	var videoControlBox=document.querySelector(".video-control-box");
+	var videoControl=document.querySelector(".video-control");
+	var x,y,nowY,nowY;
+	videoPlay.onmousemove=function(event){
+		clearTimeout(timer);	
 		videoControl.style.display="block";
 		progress.style.top="-45px";
 		progress.style.height="3px";
-		// console.log("in");
+		var e=event||window.event;
+		x=e.clientX;
+		y=e.clientY;
+
+		var timer = setTimeout(function(){
+			nowX=e.clientX;
+			nowY=e.clientY;
+			if(x===nowX&&y===nowY){
+				videoControl.style.display="none";
+				progress.style.top="0px";
+				progress.style.height="3px";
+			}
+		},4000)		
 	};
 	videoPlay.onmouseout=function(){
 		videoControl.style.display="none";
-		progress.style.top="39px";
+		progress.style.top="0px";
 		progress.style.height="3px";
-		// console.log("out");
 	};
 	progress.onmouseover=function(){
 		videoControl.style.display="block";
