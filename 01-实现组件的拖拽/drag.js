@@ -2,7 +2,7 @@ function getCSS (obj,sty) {
 	return window.getComputedStyle(obj, null)[sty]?window.getComputedStyle(obj, null)[sty]:obj.currentStyle[sty];
 }
 
-function drag(eBar,eDrag){
+function drag(eBar,eDrag,callback){
 	var x=getCSS(eDrag,"left");//组件横坐标
 	var y=getCSS(eDrag,"top");//组件纵坐标
 	var e,flag;
@@ -23,6 +23,9 @@ function drag(eBar,eDrag){
 			nowY=e.clientY;
 			eDrag.style.left=(parseInt(x)+nowX-firstX)+"px";
 			eDrag.style.top=(parseInt(y)+nowY-firstY)+"px";
+		}
+		if(typeof(callback)==='Function'){
+			callback(parseInt(x)+nowX-firstX,parseInt(y)+nowY-firstY);
 		}
 	};
 
