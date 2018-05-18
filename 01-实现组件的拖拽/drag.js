@@ -24,7 +24,7 @@ function drag(eBar,eDrag,callback){
 			eDrag.style.left=(parseInt(x)+nowX-firstX)+"px";
 			eDrag.style.top=(parseInt(y)+nowY-firstY)+"px";
 		}
-		if(typeof(callback)==='Function'){
+		if(typeof(callback)==='function'){
 			callback(parseInt(x)+nowX-firstX,parseInt(y)+nowY-firstY);
 		}
 	};
