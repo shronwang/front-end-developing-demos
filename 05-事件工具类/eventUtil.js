@@ -32,7 +32,7 @@ var eventUtil={
 		if(event.preventDefault){
 			event.preventDefault();
 		}else{
-			event.returnValue=true;
+			event.returnValue=false;
 		}
 	},
 	// 阻止进一步冒泡
