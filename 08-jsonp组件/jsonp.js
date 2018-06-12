@@ -1,8 +1,8 @@
 
-(function(w){
+(function(window){
 	var jsonp=function(url,data,callback){
 		//组装url
-		var param = url.indexOf(?)==-1?'?':'&';
+		var param = url.indexOf('?')==-1 ? '?':'&';
 		for(key in data){
 			param += key+'='+encodeURIComponent(data[key])+'&';
 		}
