@@ -18,25 +18,27 @@ window.bubbleSort=bubbleSort;
 
 /****快速排序****/
 let QuickSort = function quickSort(arr){
-    //如果数组<=1,则直接返回
-    if(arr.length<=1){return arr;}
-    var pivotIndex=Math.floor(arr.length/2);
-    //找基准，并把基准从原数组删除
-    var pivot=arr.splice(pivotIndex,1)[0];
-    //定义左右数组
-    var left=[];
-    var right=[];
-    //比基准小的放在left，比基准大的放在right
-    for(var i=0;i<arr.length;i++){
-        if(arr[i]<=pivot){
-            left.push(arr[i]);
+    var i=0,
+        j=arr.length-1,
+        key=arr[0];
+    if(arr.length===1){return arr;}
+    
+        while(arr[j]>=key&&i<j){
+            j--;
         }
-        else{
-            right.push(arr[i]);
+        if(i<j){
+            arr[i]=arr[j];
+            i++;        
         }
-    }
-        //递归
-    return quickSort(left).concat([pivot],quickSort(right));
+        while(arr[i]<=key&&i<j){
+            i++;
+        }
+        if(i<j){
+            arr[j]=arr[i];
+            j--;
+        }
+    arr[i]=key;
+    return quickSort(arr.slice(0,i)).concat(arr[i],quickSort(arr.slice(i+1)));
 } 
 window.quickSort=QuickSort;
 
